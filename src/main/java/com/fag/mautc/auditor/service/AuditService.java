@@ -25,6 +25,7 @@ public class AuditService {
         Severity severity = classificarSeveridade(evento.totalItems());
 
         log.info("Triagem de severidade: total de itens={}, severity={}", evento.totalItems(), severity);
+        log.info("queueName extraído do evento: '{}'", evento.getOrigin());
 
         AuditError auditError = new AuditError(evento.getOrigin(), payloadBruto, severity);
         AuditError salvo = repository.save(auditError);
